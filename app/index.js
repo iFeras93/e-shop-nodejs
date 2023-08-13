@@ -5,6 +5,7 @@ const categoriesRoute = require('./routes/categories.route')
 
 const app = express();
 
+app.use(express.json())
 app.get("/", (req, res) => {
     res.send("Hello World")
 })

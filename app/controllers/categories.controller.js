@@ -1,3 +1,6 @@
+const CategoryModel = require("../models/category.model")
+const slugify = require('slugify')
+
 function getAll(req, res) {
     res.send("Show All Categories")
 }
@@ -5,7 +8,17 @@ function getAll(req, res) {
 function getById(req, res) {
 }
 
-function store(req, res) {
+async function store(req, res) {
+    let categoryName = req.body.name
+    console.log(categoryName)
+    // return false;
+    const newCategory = await CategoryModel.create({
+        name: categoryName,
+        slug: slugify(categoryName)
+    })
+
+    res.status(200).json(newCategory)
+
 }
 
 function update(req, res) {
